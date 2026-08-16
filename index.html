@@ -354,9 +354,9 @@ mark{background:#FBEFC9;color:inherit;border-radius:3px;padding:0 1px}
     <h1>Umrah Audio Guide</h1>
     <p>Short, step-by-step lessons in Urdu. Search any step, listen on the spot, or download everything before you travel.</p>
 
-    <a class="zip" href="umrah-audio.zip" download>
+    <a class="zip" href="zip-files/umarh.zip" download>
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
-      <span>Download all audio (ZIP)<small>One file — works offline in the Haram</small></span>
+      <span>Download all files (ZIP)<small>One file — works offline</small></span>
     </a>
 
     <div class="meter">
@@ -380,7 +380,7 @@ mark{background:#FBEFC9;color:inherit;border-radius:3px;padding:0 1px}
 
     <div class="chips" role="group" aria-label="Filter parts">
       <button class="chip" data-filter="all" aria-pressed="true">All parts</button>
-      <button class="chip" data-filter="ladies" aria-pressed="false">For ladies</button>
+      <button class="chip" data-filter="ladies" aria-pressed="false">Important (For ladies)</button>
       <button class="chip" data-filter="audio" aria-pressed="false">Audio</button>
       <button class="chip" data-filter="ref" aria-pressed="false">Reference image</button>
       <button class="chip" data-filter="new" aria-pressed="false">Not played yet</button>
@@ -763,7 +763,7 @@ function render() {
       let tags = "";
       if (p.audio) tags += '<span class="dot"></span><span class="tag-audio">Audio</span>';
       if (p.image) tags += '<span class="dot"></span><span class="tag-ref">Reference</span>';
-      if (p.isLadies) tags += '<span class="dot"></span><span class="tag-ladies">For ladies</span>';
+      if (p.isLadies) tags += '<span class="dot"></span><span class="tag-ladies">Important For ladies</span>';
 
       const actions = [];
       if (p.audio) {
