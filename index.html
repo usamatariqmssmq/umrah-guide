@@ -483,7 +483,7 @@ mark{background:#FBEFC9;color:inherit;border-radius:3px;padding:0 1px}
       <span id="offlineText">Save for offline use</span>
     </button>
     <div class="offline-bar" id="offlineBar"><i id="offlineFill"></i></div>
-    <p class="offline-note" id="offlineNote">Keeps every lesson on your phone so the guide opens with no internet in the Haram.</p>
+    <p class="offline-note" id="offlineNote">Keeps every lesson on your phone so the guide opens with no internet.</p>
 
     <div class="meter">
       <div class="meter-track"><div class="meter-fill" id="meterFill"></div></div>
@@ -1147,7 +1147,7 @@ async function refreshOfflineButton() {
     txt.textContent = "Save for offline use";
     note.textContent = isIOS() && !installed()
       ? "On iPhone, add the guide to your home screen first, then save from that icon — otherwise it downloads twice."
-      : "Keeps every lesson on your phone so the guide opens with no internet in the Haram.";
+      : "Keeps every lesson on your phone so the guide opens with no internet.";
   }
 }
 
