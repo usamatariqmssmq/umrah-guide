@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B2019">
+<meta name="description" content="Step-by-step Umrah lessons in Urdu. Listen, read and download — works offline.">
+
+<!-- installable app -->
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Umrah Guide">
+
+<!-- how the link looks when shared on WhatsApp -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Umrah Audio Guide">
+<meta property="og:description" content="Step-by-step Umrah lessons in Urdu. Works offline.">
+<meta property="og:image" content="icons/icon-512.png">
+<title>Umrah Audio Guide</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --marble:#EDF0EC;      /* mataf marble  */
+  --card:#FFFFFF;
+  --tint:#F6F9F6;
+  --ink:#10241F;         /* deep haram green-black */
+  --soft:#5A6E67;
+  --line:#DDE4DF;
+  --gold:#9C7B3C;
+  --gold-bg:#F3EADA;
+  --green:#0F5C46;
+  --shadow:0 1px 2px rgba(16,36,31,.05), 0 12px 32px rgba(16,36,31,.07);
+  --dock-h:0px;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --serif:"Amiri","Iowan Old Style",Georgia,serif;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--marble);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.5;
+  padding-bottom:var(--dock-h);
+}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:6px}
+
+.wrap{max-width:840px;margin:0 auto;padding:0 14px}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23C9A227' stroke-opacity='0.16' stroke-width='1'%3E%3Cpath d='M32 6 L58 32 L32 58 L6 32 Z'/%3E%3Cpath d='M13 13 H51 V51 H13 Z'/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(160deg,#0B2019 0%,#123C2E 100%);
+  color:#F1F5F1;
+  padding:34px 0 26px;
+  text-align:center;
+}
+.talbiyah{
+  font-family:var(--serif);
+  font-size:clamp(26px,7.5vw,40px);
+  line-height:1.6;
+  color:#E8CD91;
+  margin:0 0 10px;
+  direction:rtl;
+}
+.hero h1{
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:clamp(24px,5.4vw,32px);
+  letter-spacing:.01em;
+  margin:0 0 8px;
+}
+.hero p{
+  margin:0 auto;
+  max-width:34em;
+  font-size:14.5px;
+  line-height:1.6;
+  color:#B9CCC2;
+}
+
+.zip{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin:20px auto 0;
+  max-width:420px;
+  background:#E8CD91;
+  color:#0B2019;
+  text-decoration:none;
+  font-weight:600;
+  padding:14px 18px;
+  border-radius:12px;
+}
+.zip small{display:block;font-weight:400;opacity:.75;font-size:12.5px}
+.zip:hover{background:#F0DAA9}
+
+/* save-for-offline */
+.offline{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  margin:10px auto 0;max-width:420px;width:100%;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(232,205,145,.38);
+  color:#E8CD91;font-size:14px;font-weight:500;
+  padding:12px 16px;border-radius:12px;
+}
+.offline:hover{background:rgba(255,255,255,.12)}
+.offline[disabled]{opacity:.65;cursor:default}
+.offline-bar{
+  max-width:420px;margin:8px auto 0;height:3px;border-radius:3px;
+  background:rgba(255,255,255,.16);overflow:hidden;display:none
+}
+.offline-bar.on{display:block}
+.offline-bar i{display:block;height:100%;width:0;background:#E8CD91;transition:width .2s linear}
+.offline-note{
+  max-width:420px;margin:8px auto 0;font-size:12.5px;line-height:1.5;color:#9DB4A9;text-align:center
+}
+.netbar{
+  display:none;background:#E8CD91;color:#0B2019;text-align:center;
+  font-size:13px;font-weight:500;padding:9px 14px
+}
+.netbar.on{display:block}
+
+/* confirm sheet */
+.sheet{
+  position:fixed;inset:0;z-index:60;display:none;
+  align-items:flex-end;justify-content:center;
+  background:rgba(11,32,25,.55)
+}
+.sheet.on{display:flex}
+.sheet-box{
+  background:var(--card);width:100%;max-width:560px;
+  border-radius:20px 20px 0 0;padding:20px 18px calc(18px + env(safe-area-inset-bottom));
+  max-height:90vh;overflow:auto
+}
+@media (min-width:620px){
+  .sheet{align-items:center;padding:20px}
+  .sheet-box{border-radius:18px}
+}
+.sheet h2{font-family:var(--serif);font-size:22px;margin:0 0 4px}
+.sheet .lead{color:var(--soft);font-size:14px;margin:0 0 14px;line-height:1.5}
+.langs{display:flex;gap:4px;background:var(--marble);padding:4px;border-radius:11px;margin-bottom:14px}
+.langs button{
+  flex:1;border:0;background:none;padding:9px 4px;border-radius:8px;
+  font-size:13.5px;font-weight:500;color:var(--soft)
+}
+.langs button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(16,36,31,.12)}
+.points{margin:0;padding:0;list-style:none}
+.points li{
+  position:relative;padding:9px 0 9px 22px;font-size:14.5px;line-height:1.6;
+  border-bottom:1px solid var(--line)
+}
+.points li:last-child{border-bottom:0}
+.points li::before{
+  content:"";position:absolute;left:4px;top:18px;width:6px;height:6px;border-radius:50%;background:var(--gold)
+}
+.sheet-box.rtl .lead,.sheet-box.rtl h2,.sheet-box.rtl .points{direction:rtl;text-align:right}
+.sheet-box.rtl .points li{padding:9px 22px 9px 0}
+.sheet-box.rtl .points li::before{left:auto;right:4px}
+.steps{margin:0;padding:0;list-style:none;counter-reset:s}
+.steps li{
+  counter-increment:s;position:relative;padding:11px 0 11px 36px;
+  font-size:14.5px;line-height:1.6;border-bottom:1px solid var(--line)
+}
+.steps li:last-child{border-bottom:0}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:12px;
+  width:24px;height:24px;border-radius:50%;
+  background:var(--gold-bg);color:var(--gold);border:1px solid #E5D5B6;
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  display:flex;align-items:center;justify-content:center
+}
+.sheet-box.rtl .steps{direction:rtl;text-align:right}
+.sheet-box.rtl .steps li{padding:11px 36px 11px 0}
+.sheet-box.rtl .steps li::before{left:auto;right:0}
+.sheet-box.rtl .points,.sheet-box.rtl .steps,.sheet-box.rtl .lead{font-family:"Noto Nastaliq Urdu",var(--serif);line-height:2.4}
+.sheet-note{
+  font-size:13px;line-height:1.55;color:var(--soft);
+  background:var(--marble);border-radius:10px;padding:11px 13px;margin-top:14px
+}
+.sheet-box.rtl .sheet-note{direction:rtl;text-align:right}
+.sheet-actions button[hidden]{display:none}
+.sheet-actions{display:flex;gap:10px;margin-top:18px}
+.sheet-actions button{
+  flex:1;padding:13px 10px;border-radius:11px;font-size:15px;font-weight:600;
+  border:1px solid var(--line);background:var(--card)
+}
+.sheet-actions .go{background:var(--green);border-color:var(--green);color:#fff}
+.sheet-size{
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--soft);text-align:center;margin-top:12px
+}
+
+/* progress meter */
+.meter{margin:22px auto 0;max-width:420px}
+.meter-track{height:3px;background:rgba(255,255,255,.16);border-radius:3px;overflow:hidden}
+.meter-fill{height:100%;width:0;background:#E8CD91;border-radius:3px;transition:width .3s ease}
+.meter-label{
+  font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+  color:#9DB4A9;margin-top:9px
+}
+
+/* ============================================================
+   STICKY TOOLBAR
+   ============================================================ */
+.bar{
+  position:sticky;top:0;z-index:30;
+  background:rgba(237,240,236,.93);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+  padding:12px 0 10px;
+}
+.search{position:relative}
+.search input{
+  width:100%;
+  font:inherit;
+  padding:13px 42px 13px 42px;
+  border:1px solid var(--line);
+  background:var(--card);
+  border-radius:12px;
+  color:var(--ink);
+}
+.search input::placeholder{color:#93A49D}
+.search input:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(15,92,70,.12)}
+.search-ico,.search-clear{
+  position:absolute;top:50%;transform:translateY(-50%);
+  color:var(--soft);display:flex;
+}
+.search-ico{left:14px;pointer-events:none}
+.search-clear{
+  right:8px;background:none;border:0;padding:8px;border-radius:8px;line-height:0;display:none
+}
+.search-clear:hover{background:var(--marble)}
+.search.has-value .search-clear{display:flex}
+
+.chips{display:flex;gap:8px;overflow-x:auto;margin-top:10px;padding-bottom:2px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{
+  flex:0 0 auto;
+  border:1px solid var(--line);
+  background:var(--card);
+  color:var(--soft);
+  padding:7px 13px;
+  border-radius:999px;
+  font-size:13.5px;
+  font-weight:500;
+  white-space:nowrap;
+}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#F1F5F1}
+
+.count{
+  font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--soft);margin-top:11px
+}
+
+/* ============================================================
+   LIST
+   ============================================================ */
+.panel{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  margin:16px 0 28px;
+}
+
+.row{border-top:1px solid var(--line)}
+.row:first-child{border-top:0}
+
+.row-head{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  width:100%;
+  text-align:left;
+  background:none;
+  border:0;
+  padding:16px 16px 16px 14px;
+  position:relative;
+}
+.row-head:hover{background:var(--tint)}
+
+/* the spine: a hairline threading the numbered steps together */
+.row-head::before{
+  content:"";position:absolute;left:32px;top:0;bottom:0;width:1px;
+  background:var(--line);
+}
+.row:first-child .row-head::before{top:26px}
+.row:last-child .row-head::before{bottom:auto;height:26px}
+
+.num{
+  position:relative;z-index:1;flex:0 0 auto;
+  width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:13px;font-weight:600;
+  background:var(--gold-bg);color:var(--gold);
+  border:1px solid #E5D5B6;
+}
+.row.done .num{background:var(--green);border-color:var(--green);color:#fff}
+.row.playing .num{background:var(--ink);border-color:var(--ink);color:#E8CD91}
+
+.row-main{flex:1 1 auto;min-width:0}
+.row-title{font-weight:600;font-size:16px;line-height:1.35}
+.row-meta{
+  font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--soft);margin-top:5px;display:flex;flex-wrap:wrap;gap:8px;align-items:center
+}
+.dot{width:3px;height:3px;border-radius:50%;background:#B8C5BE}
+.tag-audio{color:var(--green)}
+.tag-ref{color:var(--gold)}
+.tag-ladies{color:#9C4A6B}
+.row.ladies .num{box-shadow:0 0 0 2px #F0DCE5}
+
+.caret{flex:0 0 auto;color:#A9B8B1;margin-top:8px;transition:transform .2s ease}
+.row.open .caret{transform:rotate(90deg)}
+
+/* expanded body */
+.row-body{display:none;padding:2px 16px 20px 62px;background:var(--tint)}
+.row.open .row-body{display:block}
+
+.sub{
+  font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--soft);margin:6px 0 8px
+}
+.topics{margin:0 0 4px;padding:0;list-style:none;counter-reset:t}
+.topics li{
+  counter-increment:t;position:relative;padding:5px 0 5px 26px;line-height:1.55;font-size:15px
+}
+.topics li::before{
+  content:counter(t,decimal-leading-zero);
+  position:absolute;left:0;top:6px;
+  font-family:var(--mono);font-size:11px;color:var(--gold)
+}
+mark{background:#FBEFC9;color:inherit;border-radius:3px;padding:0 1px}
+
+.ref{display:block;margin-top:14px}
+.ref img{
+  width:100%;max-height:70vh;object-fit:contain;
+  background:var(--card);border:1px solid var(--line);border-radius:12px;display:block
+}
+
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink);
+  padding:10px 15px;border-radius:10px;font-size:14px;font-weight:500;text-decoration:none
+}
+.btn:hover{background:var(--marble)}
+.btn-play{background:var(--green);border-color:var(--green);color:#fff}
+.btn-play:hover{background:#0C4B39}
+
+/* empty state */
+.empty{padding:44px 20px;text-align:center}
+.empty h3{font-family:var(--serif);font-size:21px;margin:0 0 6px}
+.empty p{margin:0 0 16px;color:var(--soft);font-size:14.5px}
+
+/* ============================================================
+   DOCK PLAYER
+   ============================================================ */
+.dock{
+  position:fixed;left:0;right:0;bottom:0;z-index:40;
+  padding:0 10px calc(10px + env(safe-area-inset-bottom));
+  transform:translateY(130%);
+  transition:transform .28s cubic-bezier(.2,.8,.3,1);
+  pointer-events:none;
+}
+.dock.up{transform:translateY(0);pointer-events:auto}
+.dock-inner{
+  max-width:840px;margin:0 auto;
+  background:linear-gradient(160deg,#0B2019,#143E30);
+  color:#F1F5F1;border-radius:16px;padding:12px 14px 10px;
+  box-shadow:0 -2px 8px rgba(16,36,31,.08), 0 16px 40px rgba(16,36,31,.28);
+}
+.dock-top{display:flex;align-items:center;gap:10px}
+.dock-label{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#E8CD91
+}
+.dock-title{
+  flex:1 1 auto;min-width:0;font-size:14px;font-weight:500;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+.icon-btn{
+  background:none;border:0;color:#F1F5F1;padding:7px;border-radius:9px;line-height:0;display:flex
+}
+.icon-btn:hover{background:rgba(255,255,255,.1)}
+
+.seek{
+  -webkit-appearance:none;appearance:none;width:100%;height:20px;background:none;margin:4px 0 0;
+  accent-color:#E8CD91;cursor:pointer
+}
+.seek::-webkit-slider-runnable-track{height:4px;border-radius:4px;background:rgba(255,255,255,.2)}
+.seek::-webkit-slider-thumb{
+  -webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:#E8CD91;margin-top:-5px
+}
+.seek::-moz-range-track{height:4px;border-radius:4px;background:rgba(255,255,255,.2)}
+.seek::-moz-range-thumb{width:14px;height:14px;border:0;border-radius:50%;background:#E8CD91}
+
+.dock-msg{
+  display:none;background:rgba(232,205,145,.14);border:1px solid rgba(232,205,145,.35);
+  color:#E8CD91;font-size:12.5px;line-height:1.45;padding:9px 11px;border-radius:9px;margin-top:8px
+}
+.dock-msg.on{display:block}
+.times{
+  display:flex;justify-content:space-between;
+  font-family:var(--mono);font-size:11px;color:#9DB4A9;margin-top:-2px
+}
+.dock-ctrl{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:6px}
+.big{
+  width:48px;height:48px;border-radius:50%;background:#E8CD91;color:#0B2019;
+  border:0;display:flex;align-items:center;justify-content:center
+}
+.big:hover{background:#F0DAA9}
+.rate{
+  font-family:var(--mono);font-size:12px;font-weight:600;color:#E8CD91;
+  background:rgba(255,255,255,.08);border:0;padding:8px 10px;border-radius:9px;min-width:46px
+}
+.skip{position:relative}
+.skip span{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:8.5px;font-weight:600;padding-top:3px
+}
+
+/* ============================================================
+   FOOTER + MISC
+   ============================================================ */
+.top{
+  display:block;margin:0 auto;background:none;border:1px solid var(--line);
+  border-radius:999px;padding:9px 18px;font-size:13.5px;color:var(--soft);background:var(--card)
+}
+.footer{text-align:center;padding:30px 16px 40px;color:var(--soft);font-size:14px}
+.footer .dua{font-family:var(--serif);font-size:18px;color:var(--ink);margin-bottom:8px}
+
+@media (max-width:420px){
+  .row-body{padding-left:52px}
+  .row-head{gap:11px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+
+<body>
+
+<div class="netbar" id="netbar">You are offline — saved lessons still work.</div>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="talbiyah" lang="ar" dir="rtl">لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ</p>
+    <h1>Umrah Audio Guide</h1>
+    <p>Short, step-by-step lessons in Urdu. Search any step, listen on the spot, or download everything before you travel.</p>
+
+    <a class="zip" href="zip-files/umarh.zip" download>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+      <span>Download all files (ZIP)<small>One file — works offline</small></span>
+    </a>
+
+    <button class="offline" id="offlineBtn">
+      <svg id="offlineIcon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15a4 4 0 0 1 .6-7.95A6 6 0 0 1 16.5 7 4.5 4.5 0 0 1 18 15.8"/><path d="M12 12v8"/><path d="M8.5 16.5L12 20l3.5-3.5"/></svg>
+      <span id="offlineText">Save for offline use</span>
+    </button>
+    <div class="offline-bar" id="offlineBar"><i id="offlineFill"></i></div>
+    <p class="offline-note" id="offlineNote">Keeps every lesson on your phone so the guide opens with no internet in the Haram.</p>
+
+    <div class="meter">
+      <div class="meter-track"><div class="meter-fill" id="meterFill"></div></div>
+      <div class="meter-label" id="meterLabel">0 of 0 played</div>
+    </div>
+  </div>
+</header>
+
+<div class="bar">
+  <div class="wrap">
+    <div class="search" id="searchBox">
+      <span class="search-ico">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></svg>
+      </span>
+      <input id="q" type="search" autocomplete="off" placeholder="Search a part number or topic — try tawaf" aria-label="Search parts and topics">
+      <button class="search-clear" id="clearBtn" aria-label="Clear search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <div class="chips" role="group" aria-label="Filter parts">
+      <button class="chip" data-filter="all" aria-pressed="true">All parts</button>
+      <button class="chip" data-filter="ladies" aria-pressed="false">Important (For ladies)</button>
+      <button class="chip" data-filter="audio" aria-pressed="false">Audio</button>
+      <button class="chip" data-filter="ref" aria-pressed="false">Reference image</button>
+      <button class="chip" data-filter="new" aria-pressed="false">Not played yet</button>
+    </div>
+
+    <div class="count" id="count"></div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="panel" id="list"></div>
+  <button class="top" id="topBtn">Back to top</button>
+</main>
+
+<footer class="footer">
+  <div class="dua">May Allah accept your Umrah</div>
+  <div>and make it easy and beneficial. Ameen.</div>
+  <div style="margin-top:16px"><a href="simple.html" style="color:var(--green);font-weight:600">Aasan version kholein — bade harf, sab kuch khula hua</a></div>
+</footer>
+
+<!-- dock player -->
+<div class="dock" id="dock" aria-live="polite">
+  <div class="dock-inner">
+    <div class="dock-top">
+      <span class="dock-label" id="dockNum">PART</span>
+      <span class="dock-title" id="dockTitle"></span>
+      <button class="icon-btn" id="dockClose" aria-label="Close player">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <input class="seek" id="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek">
+    <div class="times"><span id="tNow">0:00</span><span id="tEnd">0:00</span></div>
+    <div class="dock-msg" id="dockMsg"></div>
+    <div class="dock-ctrl">
+      <button class="icon-btn skip" id="back10" aria-label="Back 10 seconds">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5V2L7 6l5 4V7a6 6 0 1 1-6 6"/></svg>
+        <span>10</span>
+      </button>
+      <button class="big" id="playPause" aria-label="Play"></button>
+      <button class="icon-btn skip" id="fwd10" aria-label="Forward 10 seconds">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5V2l5 4-5 4V7a6 6 0 1 0 6 6"/></svg>
+        <span>10</span>
+      </button>
+      <button class="rate" id="rate" aria-label="Playback speed">1×</button>
+    </div>
+  </div>
+</div>
+
+<!-- confirm before saving -->
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+  <div class="sheet-box" id="sheetBox">
+    <div class="langs" role="group" aria-label="Language">
+      <button data-lang="en" aria-pressed="true">English</button>
+      <button data-lang="hi" aria-pressed="false">हिन्दी</button>
+      <button data-lang="ur" aria-pressed="false">اردو</button>
+    </div>
+    <h2 id="sheetTitle"></h2>
+    <p class="lead" id="sheetLead"></p>
+    <div id="sheetBody"></div>
+    <div class="sheet-note" id="sheetNote" hidden></div>
+    <div class="sheet-size" id="sheetSize"></div>
+    <div class="sheet-actions">
+      <button id="sheetCancel"></button>
+      <button class="go" id="sheetGo"></button>
+    </div>
+  </div>
+</div>
+
+<audio id="audio" preload="none"></audio>
+
+<script src="parts.js"></script>
+<script>
+/* =========================================================================
+   1. YOUR CONTENT lives in parts.js — loaded just above this script.
+      Edit that file to add or change parts. Nothing to change here.
+   ========================================================================= */
+
+
+/* =========================================================================
+   2. THE APP — no need to change anything below.
+   ========================================================================= */
+
+const parts = [...PARTS].sort((a, b) => a.n - b.n);
+
+/* --- safe storage (falls back to memory if cookies/storage are blocked) --- */
+const store = (() => {
+  let mem = {}, ok = false;
+  try { localStorage.setItem("_t", "1"); localStorage.removeItem("_t"); ok = true; } catch (e) {}
+  return {
+    get(k, d) { try { const v = ok ? localStorage.getItem(k) : mem[k]; return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+    set(k, v) { try { const s = JSON.stringify(v); ok ? localStorage.setItem(k, s) : (mem[k] = s); } catch (e) {} }
+  };
+})();
+
+let done = new Set(store.get("umrah.played", []));
+
+/* --- helpers --- */
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const norm = s => String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+  .replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+const time = s => {
+  if (!isFinite(s)) return "0:00";
+  const m = Math.floor(s / 60), r = Math.floor(s % 60);
+  return m + ":" + String(r).padStart(2, "0");
+};
+
+const ICON = {
+  play: '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>',
+  pause: '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="5" width="3.5" height="14" rx="1"/><rect x="13.5" y="5" width="3.5" height="14" rx="1"/></svg>',
+  playSm: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>',
+  down: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>',
+  check: '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l5 5L19 7"/></svg>',
+  caret: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>'
+};
+
+/* --- state --- */
+let query = "", filter = "all", current = null;
+const audio = $("audio");
+
+/* --- search index --- */
+parts.forEach(p => {
+  p.isLadies = String(p.ladies).trim().toUpperCase() === "Y" || p.ladies === true;
+  p.hay = norm(["part", p.n, p.title, p.topics.join(" "), p.isLadies ? "ladies mastoorat aurat khawateen" : ""].join(" "));
+});
+
+function tokens() { return norm(query).split(" ").filter(Boolean); }
+
+function matches(p) {
+  if (filter === "audio" && !p.audio) return false;
+  if (filter === "ref" && !p.image) return false;
+  if (filter === "ladies" && !p.isLadies) return false;
+  if (filter === "new" && done.has(p.n)) return false;
+  const t = tokens();
+  return t.every(w => p.hay.includes(w));
+}
+
+function hilite(text) {
+  const t = tokens();
+  let out = esc(text);
+  if (!t.length) return out;
+  const rx = new RegExp("(" + t.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|") + ")", "gi");
+  return out.replace(rx, "<mark>$1</mark>");
+}
+
+/* --- render --- */
+function render() {
+  const list = $("list");
+  const visible = parts.filter(matches);
+
+  if (!visible.length) {
+    list.innerHTML =
+      '<div class="empty"><h3>Nothing found</h3>' +
+      '<p>No part matches ' + (query ? '“' + esc(query) + '”' : 'this filter') +
+      '. Try a part number like 19, or a word like tawaf.</p>' +
+      '<button class="btn" id="resetBtn">Clear search and filters</button></div>';
+    $("resetBtn").onclick = () => {
+      query = ""; filter = "all"; $("q").value = "";
+      $("searchBox").classList.remove("has-value");
+      document.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", String(c.dataset.filter === "all")));
+      render();
+    };
+  } else {
+    list.innerHTML = visible.map(p => {
+      const title = p.title || p.topics[0] || ("Part " + p.n);
+      const meta = [p.topics.length + (p.topics.length === 1 ? " topic" : " topics")];
+      let tags = "";
+      if (p.audio) tags += '<span class="dot"></span><span class="tag-audio">Audio</span>';
+      if (p.image) tags += '<span class="dot"></span><span class="tag-ref">Reference</span>';
+      if (p.isLadies) tags += '<span class="dot"></span><span class="tag-ladies">Important For ladies</span>';
+
+      const actions = [];
+      if (p.audio) {
+        actions.push('<button class="btn btn-play" data-play="' + p.n + '">' + ICON.playSm + ' Play part ' + p.n + '</button>');
+        actions.push('<a class="btn" href="' + esc(p.audio) + '" download>' + ICON.down + ' Download audio</a>');
+      }
+      if (p.image) {
+        actions.push('<a class="btn" href="' + esc(p.image) + '" download>' + ICON.down + ' Save image</a>');
+      }
+
+      return '<div class="row' + (done.has(p.n) ? " done" : "") + (p.isLadies ? " ladies" : "") + (current === p.n ? " playing" : "") + '" id="row-' + p.n + '">' +
+        '<button class="row-head" aria-expanded="false" data-toggle="' + p.n + '">' +
+          '<span class="num">' + (done.has(p.n) ? ICON.check : String(p.n).padStart(2, "0")) + '</span>' +
+          '<span class="row-main">' +
+            '<span class="row-title">' + hilite(title) + '</span>' +
+            '<span class="row-meta">' + meta[0] + tags + '</span>' +
+          '</span>' +
+          '<span class="caret">' + ICON.caret + '</span>' +
+        '</button>' +
+        '<div class="row-body">' +
+          '<div class="sub">Topics covered</div>' +
+          '<ol class="topics">' + p.topics.map(t => "<li>" + hilite(t) + "</li>").join("") + "</ol>" +
+          (p.image ? '<a class="ref" href="' + esc(p.image) + '" target="_blank" rel="noopener"><img src="' + esc(p.image) + '" loading="lazy" alt="Dua and reference for part ' + p.n + '"></a>' : "") +
+          '<div class="actions">' + actions.join("") + "</div>" +
+        "</div>" +
+      "</div>";
+    }).join("");
+  }
+
+  $("count").textContent = visible.length + " of " + parts.length + " parts shown";
+  updateMeter();
+}
+
+function updateMeter() {
+  const pct = parts.length ? (done.size / parts.length) * 100 : 0;
+  $("meterFill").style.width = pct + "%";
+  $("meterLabel").textContent = done.size + " of " + parts.length + " played";
+}
+
+/* --- interactions --- */
+$("list").addEventListener("click", e => {
+  const play = e.target.closest("[data-play]");
+  if (play) { start(Number(play.dataset.play)); return; }
+
+  const head = e.target.closest("[data-toggle]");
+  if (head) {
+    const row = head.closest(".row");
+    const open = row.classList.toggle("open");
+    head.setAttribute("aria-expanded", String(open));
+  }
+});
+
+$("q").addEventListener("input", e => {
+  query = e.target.value;
+  $("searchBox").classList.toggle("has-value", !!query);
+  render();
+});
+
+$("clearBtn").onclick = () => {
+  query = ""; $("q").value = "";
+  $("searchBox").classList.remove("has-value");
+  $("q").focus(); render();
+};
+
+document.querySelectorAll(".chip").forEach(c => {
+  c.onclick = () => {
+    filter = c.dataset.filter;
+    document.querySelectorAll(".chip").forEach(o => o.setAttribute("aria-pressed", String(o === c)));
+    render();
+  };
+});
+
+$("topBtn").onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+/* --- player --- */
+function start(n) {
+  const p = parts.find(x => x.n === n);
+  if (!p || !p.audio) return;
+  if (current !== n) {
+    current = n;
+    audio.src = p.audio;
+    $("dockNum").textContent = "PART " + n;
+    $("dockTitle").textContent = p.title || p.topics[0];
+    render();
+  }
+  audio.play().catch(() => {});
+  $("dock").classList.add("up");
+  sizeDock();
+}
+
+function sizeDock() {
+  const up = $("dock").classList.contains("up");
+  document.documentElement.style.setProperty("--dock-h", up ? ($("dock").offsetHeight + 8) + "px" : "0px");
+}
+
+$("playPause").onclick = () => audio.paused ? audio.play().catch(() => {}) : audio.pause();
+$("back10").onclick = () => audio.currentTime = Math.max(0, audio.currentTime - 10);
+$("fwd10").onclick = () => audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 10);
+
+const RATES = [1, 1.25, 1.5, 0.75];
+let ri = 0;
+$("rate").onclick = () => {
+  ri = (ri + 1) % RATES.length;
+  audio.playbackRate = RATES[ri];
+  $("rate").textContent = RATES[ri] + "×";
+};
+
+$("dockClose").onclick = () => {
+  audio.pause();
+  $("dock").classList.remove("up");
+  current = null;
+  sizeDock();
+  render();
+};
+
+function setBtn() {
+  $("playPause").innerHTML = audio.paused ? ICON.play : ICON.pause;
+  $("playPause").setAttribute("aria-label", audio.paused ? "Play" : "Pause");
+}
+audio.addEventListener("play", () => { setBtn(); $("dockMsg").classList.remove("on"); });
+audio.addEventListener("pause", setBtn);
+
+audio.addEventListener("timeupdate", () => {
+  if (!audio.duration) return;
+  $("seek").value = (audio.currentTime / audio.duration) * 1000;
+  $("tNow").textContent = time(audio.currentTime);
+  $("tEnd").textContent = time(audio.duration);
+  if (current && audio.currentTime / audio.duration > 0.9 && !done.has(current)) {
+    done.add(current);
+    store.set("umrah.played", [...done]);
+    const row = $("row-" + current);
+    if (row) { row.classList.add("done"); row.querySelector(".num").innerHTML = ICON.check; }
+    updateMeter();
+  }
+});
+
+audio.addEventListener("loadedmetadata", () => {
+  $("tEnd").textContent = time(audio.duration);
+  $("dockMsg").classList.remove("on");
+});
+
+audio.addEventListener("error", () => {
+  const msg = $("dockMsg");
+  msg.textContent = navigator.onLine
+    ? "This audio could not be loaded. Check the file name in the audios folder."
+    : "This part is not saved on your phone yet. Connect to the internet once, then tap “Save for offline use”.";
+  msg.classList.add("on");
+  setBtn();
+});
+
+$("seek").addEventListener("input", e => {
+  if (audio.duration) audio.currentTime = (e.target.value / 1000) * audio.duration;
+});
+
+audio.addEventListener("ended", () => {
+  const next = parts.find(p => p.n > current && p.audio);
+  if (next) start(next.n); else setBtn();
+});
+
+window.addEventListener("resize", sizeDock);
+
+/* --- keyboard --- */
+document.addEventListener("keydown", e => {
+  const typing = /input|textarea/i.test(document.activeElement.tagName);
+  if (e.key === "/" && !typing) { e.preventDefault(); $("q").focus(); }
+  if (e.key === "Escape" && typing) { $("clearBtn").click(); document.activeElement.blur(); }
+  if (e.code === "Space" && !typing && current) { e.preventDefault(); $("playPause").click(); }
+});
+
+setBtn();
+render();
+
+/* =========================================================================
+   3. OFFLINE MODE
+   ========================================================================= */
+
+const MEDIA_CACHE = "umrah-media-v1";   // must match the name inside sw.js
+
+/* register the service worker (needs https — GitHub Pages is fine) */
+if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(() => {});
+  });
+}
+
+const mediaFiles = () => {
+  const list = [];
+  parts.forEach(p => { if (p.audio) list.push(p.audio); if (p.image) list.push(p.image); });
+  return list;
+};
+
+async function openMedia() {
+  if (!("caches" in window)) return null;
+  try { return await caches.open(MEDIA_CACHE); } catch (e) { return null; }
+}
+
+async function savedSoFar() {
+  const cache = await openMedia();
+  if (!cache) return 0;
+  let n = 0;
+  for (const url of mediaFiles()) { if (await cache.match(url)) n++; }
+  return n;
+}
+
+let allSaved = false;
+
+const ICON_SAVE = '<path d="M4 15a4 4 0 0 1 .6-7.95A6 6 0 0 1 16.5 7 4.5 4.5 0 0 1 18 15.8"/><path d="M12 12v8"/><path d="M8.5 16.5L12 20l3.5-3.5"/>';
+const ICON_PHONE = '<rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/>';
+
+async function refreshOfflineButton() {
+  const files = mediaFiles();
+  const btn = $("offlineBtn"), txt = $("offlineText"), note = $("offlineNote"), ico = $("offlineIcon");
+  if (!("caches" in window) || !("serviceWorker" in navigator)) {
+    btn.style.display = "none"; note.style.display = "none"; return;
+  }
+
+  const n = await savedSoFar();
+  allSaved = files.length > 0 && n >= files.length;
+  btn.disabled = false;
+  ico.innerHTML = ICON_SAVE;
+
+  if (allSaved && installed()) {
+    txt.textContent = "Saved on this phone";
+    btn.disabled = true;
+    note.textContent = "Every lesson is on this device. The guide opens with no internet.";
+  } else if (allSaved) {
+    // saved, but still running in the browser — the instructions matter most here
+    txt.textContent = "Saved — how to add to home screen";
+    ico.innerHTML = ICON_PHONE;
+    note.textContent = "Every lesson is saved. Add the guide to your home screen so it stays saved.";
+  } else if (n > 0) {
+    txt.textContent = "Finish saving (" + n + " of " + files.length + " done)";
+  } else {
+    txt.textContent = "Save for offline use";
+    note.textContent = isIOS() && !installed()
+      ? "On iPhone, add the guide to your home screen first, then save from that icon — otherwise it downloads twice."
+      : "Keeps every lesson on your phone so the guide opens with no internet in the Haram.";
+  }
+}
+
+/* ---- the two sheets, in three languages ---- */
+const TEXT = {
+  en: {
+    dir: "ltr",
+    title: "Before you save",
+    lead: "The whole guide will work with no internet. Please remember these points.",
+    points: [
+      "Keep this app on your home screen. If you remove it, the saved lessons are deleted too.",
+      "Do not clear your browser data or cache — that erases everything saved here.",
+      "Stay on wifi until it finishes, and keep this page open.",
+      "You need a little free space on your phone.",
+      "When new parts are added, open the app once with internet and tap Save again."
+    ],
+    go: "Save offline",
+    cancel: "Not now",
+
+    doneTitle: "Saved on this phone",
+    doneLead: "One step left — put the guide on your home screen so it stays saved.",
+    android: [
+      "Tap the ⋮ menu at the top right of the browser.",
+      "Tap “Install app” (on some phones it says “Add to Home screen”).",
+      "Tap “Install” to confirm.",
+      "Open the guide from your home screen icon from now on."
+    ],
+    ios: [
+      "In Safari, tap the Share button at the bottom — the square with an arrow.",
+      "Scroll down the list and tap “Add to Home Screen”.",
+      "Tap “Add” at the top right.",
+      "Open the guide from your home screen icon from now on."
+    ],
+    desktop: [
+      "Click the install icon at the right end of the address bar.",
+      "Click “Install”.",
+      "The guide will open in its own window, with or without internet."
+    ],
+    note: "Always open it from the home screen icon. Opening it in a different browser will not find the saved lessons.",
+    add: "Add to Home screen",
+    close: "Done",
+
+    iosTitle: "iPhone: add to home screen first",
+    iosLead: "On iPhone the lessons are kept inside the home screen app, not inside Safari. Add it first, then open it from the new icon and save there — otherwise you download everything twice.",
+    iosFirst: [
+      "In Safari, tap the Share button at the bottom — the square with an arrow.",
+      "Scroll down the list and tap “Add to Home Screen”.",
+      "Tap “Add” at the top right.",
+      "Close Safari and open the guide from the new icon.",
+      "Tap “Save for offline use” there."
+    ],
+    iosNote: "Safari also deletes saved files after about a week if the guide is not on the home screen.",
+    iosOk: "Got it",
+    iosAnyway: "Save in Safari anyway"
+  },
+
+  hi: {
+    dir: "ltr",
+    title: "सेव करने से पहले",
+    lead: "पूरी गाइड बिना इंटरनेट के चलेगी। ये बातें याद रखें।",
+    points: [
+      "ऐप को होम स्क्रीन पर रखें। हटाने पर सेव किए गए ऑडियो भी मिट जाएंगे।",
+      "ब्राउज़र का डेटा या कैश क्लियर न करें — इससे सेव किया गया सब कुछ मिट जाता है।",
+      "डाउनलोड पूरा होने तक वाई-फ़ाई पर रहें और यह पेज बंद न करें।",
+      "फ़ोन में थोड़ी खाली जगह होनी चाहिए।",
+      "नए पार्ट जुड़ने पर एक बार इंटरनेट के साथ खोलकर दोबारा सेव दबाएँ।"
+    ],
+    go: "ऑफ़लाइन सेव करें",
+    cancel: "अभी नहीं",
+
+    doneTitle: "इस फ़ोन में सेव हो गया",
+    doneLead: "एक आख़िरी क़दम — गाइड को होम स्क्रीन पर जोड़ें ताकि सेव रहे।",
+    android: [
+      "ब्राउज़र में ऊपर दाईं ओर ⋮ मेन्यू पर टैप करें।",
+      "“Install app” पर टैप करें (कुछ फ़ोन में “Add to Home screen” लिखा होता है)।",
+      "पुष्टि के लिए “Install” दबाएँ।",
+      "अब से गाइड को होम स्क्रीन के आइकॉन से ही खोलें।"
+    ],
+    ios: [
+      "Safari में नीचे शेयर बटन पर टैप करें — तीर वाला चौकोर निशान।",
+      "सूची में नीचे जाकर “Add to Home Screen” पर टैप करें।",
+      "ऊपर दाईं ओर “Add” दबाएँ।",
+      "अब से गाइड को होम स्क्रीन के आइकॉन से ही खोलें।"
+    ],
+    desktop: [
+      "एड्रेस बार के दाएँ किनारे पर इंस्टॉल आइकॉन पर क्लिक करें।",
+      "“Install” पर क्लिक करें।",
+      "गाइड अपनी अलग विंडो में खुलेगी, इंटरनेट हो या न हो।"
+    ],
+    note: "हमेशा होम स्क्रीन के आइकॉन से ही खोलें। दूसरे ब्राउज़र में खोलने पर सेव किए गए ऑडियो नहीं मिलेंगे।",
+    add: "होम स्क्रीन पर जोड़ें",
+    close: "ठीक है",
+
+    iosTitle: "आईफ़ोन: पहले होम स्क्रीन पर जोड़ें",
+    iosLead: "आईफ़ोन में सेव किए गए ऑडियो होम स्क्रीन वाले ऐप में रहते हैं, Safari में नहीं। पहले जोड़ें, फिर नए आइकॉन से खोलकर वहीं सेव करें — वरना दो बार डाउनलोड करना पड़ेगा।",
+    iosFirst: [
+      "Safari में नीचे शेयर बटन पर टैप करें — तीर वाला चौकोर निशान।",
+      "सूची में नीचे जाकर “Add to Home Screen” पर टैप करें।",
+      "ऊपर दाईं ओर “Add” दबाएँ।",
+      "Safari बंद करें और गाइड को नए आइकॉन से खोलें।",
+      "वहाँ “Save for offline use” दबाएँ।"
+    ],
+    iosNote: "अगर गाइड होम स्क्रीन पर न हो तो Safari लगभग एक हफ़्ते बाद सेव की गई फ़ाइलें मिटा देता है।",
+    iosOk: "समझ गया",
+    iosAnyway: "फिर भी Safari में सेव करें"
+  },
+
+  ur: {
+    dir: "rtl",
+    title: "محفوظ کرنے سے پہلے",
+    lead: "پوری گائیڈ انٹرنیٹ کے بغیر چلے گی۔ یہ باتیں یاد رکھیں۔",
+    points: [
+      "ایپ کو ہوم اسکرین پر رہنے دیں۔ ہٹانے کی صورت میں محفوظ شدہ آڈیو بھی ختم ہو جائیں گی۔",
+      "براؤزر کا ڈیٹا یا کیشے صاف نہ کریں، اس سے محفوظ شدہ سب کچھ مٹ جاتا ہے۔",
+      "ڈاؤن لوڈ مکمل ہونے تک وائی فائی سے جڑے رہیں اور یہ صفحہ بند نہ کریں۔",
+      "فون میں تھوڑی جگہ خالی ہونی چاہیے۔",
+      "نئے پارٹس آنے پر ایک بار انٹرنیٹ کے ساتھ ایپ کھول کر دوبارہ سیو دبائیں۔"
+    ],
+    go: "آف لائن محفوظ کریں",
+    cancel: "ابھی نہیں",
+
+    doneTitle: "اس فون میں محفوظ ہو گیا",
+    doneLead: "ایک آخری قدم — گائیڈ کو ہوم اسکرین پر شامل کریں تاکہ محفوظ رہے۔",
+    android: [
+      "براؤزر میں اوپر دائیں طرف ⋮ مینو پر ٹیپ کریں۔",
+      "“Install app” پر ٹیپ کریں (بعض فونز میں “Add to Home screen” لکھا ہوتا ہے)۔",
+      "تصدیق کے لیے “Install” دبائیں۔",
+      "اب سے گائیڈ کو ہوم اسکرین کے آئیکن سے ہی کھولیں۔"
+    ],
+    ios: [
+      "Safari میں نیچے شیئر بٹن پر ٹیپ کریں — تیر والا مربع نشان۔",
+      "فہرست میں نیچے جا کر “Add to Home Screen” پر ٹیپ کریں۔",
+      "اوپر دائیں طرف “Add” دبائیں۔",
+      "اب سے گائیڈ کو ہوم اسکرین کے آئیکن سے ہی کھولیں۔"
+    ],
+    desktop: [
+      "ایڈریس بار کے دائیں کنارے پر انسٹال آئیکن پر کلک کریں۔",
+      "“Install” پر کلک کریں۔",
+      "گائیڈ اپنی الگ ونڈو میں کھلے گی، انٹرنیٹ ہو یا نہ ہو۔"
+    ],
+    note: "ہمیشہ ہوم اسکرین کے آئیکن سے ہی کھولیں۔ کسی دوسرے براؤزر میں کھولنے پر محفوظ شدہ آڈیو نہیں ملیں گی۔",
+    add: "ہوم اسکرین پر شامل کریں",
+    close: "ٹھیک ہے",
+
+    iosTitle: "آئی فون: پہلے ہوم اسکرین پر شامل کریں",
+    iosLead: "آئی فون میں محفوظ شدہ آڈیو ہوم اسکرین والی ایپ میں رہتی ہیں، Safari میں نہیں۔ پہلے شامل کریں، پھر نئے آئیکن سے کھول کر وہیں محفوظ کریں — ورنہ دو بار ڈاؤن لوڈ کرنا پڑے گا۔",
+    iosFirst: [
+      "Safari میں نیچے شیئر بٹن پر ٹیپ کریں — تیر والا مربع نشان۔",
+      "فہرست میں نیچے جا کر “Add to Home Screen” پر ٹیپ کریں۔",
+      "اوپر دائیں طرف “Add” دبائیں۔",
+      "Safari بند کریں اور گائیڈ کو نئے آئیکن سے کھولیں۔",
+      "وہاں “Save for offline use” دبائیں۔"
+    ],
+    iosNote: "اگر گائیڈ ہوم اسکرین پر نہ ہو تو Safari تقریباً ایک ہفتے بعد محفوظ شدہ فائلیں مٹا دیتا ہے۔",
+    iosOk: "سمجھ گیا",
+    iosAnyway: "پھر بھی Safari میں محفوظ کریں"
+  }
+};
+
+let installEvent = null;
+let lang = /^hi/.test(navigator.language || "") ? "hi"
+         : /^ur/.test(navigator.language || "") ? "ur" : "en";
+let sheetMode = "confirm";
+
+const isIOS = () => /iphone|ipad|ipod/i.test(navigator.userAgent) ||
+  (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+const isAndroid = () => /android/i.test(navigator.userAgent);
+const installed = () =>
+  window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+
+let nastaliqLoaded = false;
+function loadNastaliq() {
+  if (nastaliqLoaded) return;
+  const l = document.createElement("link");
+  l.rel = "stylesheet";
+  l.href = "https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600&display=swap";
+  document.head.appendChild(l);
+  nastaliqLoaded = true;
+}
+
+function drawSheet() {
+  const t = TEXT[lang];
+  if (lang === "ur") loadNastaliq();
+  $("sheetBox").classList.toggle("rtl", t.dir === "rtl");
+  document.querySelectorAll(".langs button").forEach(b =>
+    b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+
+  if (sheetMode === "iosfirst") {
+    $("sheetTitle").textContent = t.iosTitle;
+    $("sheetLead").textContent = t.iosLead;
+    $("sheetBody").innerHTML =
+      '<ol class="steps">' + t.iosFirst.map(s => "<li>" + esc(s) + "</li>").join("") + "</ol>";
+    $("sheetNote").hidden = false;
+    $("sheetNote").textContent = t.iosNote;
+    $("sheetSize").textContent = "";
+    $("sheetCancel").hidden = false;
+    $("sheetCancel").textContent = t.iosAnyway;
+    $("sheetGo").textContent = t.iosOk;
+    return;
+  }
+
+  if (sheetMode === "confirm") {
+    $("sheetTitle").textContent = t.title;
+    $("sheetLead").textContent = t.lead;
+    $("sheetBody").innerHTML =
+      '<ul class="points">' + t.points.map(p => "<li>" + esc(p) + "</li>").join("") + "</ul>";
+    $("sheetNote").hidden = true;
+    $("sheetSize").textContent = mediaFiles().length + " files";
+    $("sheetCancel").hidden = false;
+    $("sheetCancel").textContent = t.cancel;
+    $("sheetGo").textContent = t.go;
+  } else {
+    const steps = isIOS() ? t.ios : isAndroid() ? t.android : t.desktop;
+    $("sheetTitle").textContent = t.doneTitle;
+    $("sheetLead").textContent = t.doneLead;
+    $("sheetBody").innerHTML =
+      '<ol class="steps">' + steps.map(s => "<li>" + esc(s) + "</li>").join("") + "</ol>";
+    $("sheetNote").hidden = false;
+    $("sheetNote").textContent = t.note;
+    $("sheetSize").textContent = "";
+    $("sheetCancel").hidden = !installEvent;          // only needed beside the one-tap button
+    $("sheetCancel").textContent = t.close;
+    $("sheetGo").textContent = installEvent ? t.add : t.close;
+  }
+}
+
+document.querySelectorAll(".langs button").forEach(b => {
+  b.onclick = () => { lang = b.dataset.lang; drawSheet(); };
+});
+
+function openSheet(mode) { sheetMode = mode; drawSheet(); $("sheet").classList.add("on"); }
+function closeSheet() { $("sheet").classList.remove("on"); }
+
+$("sheetCancel").onclick = () => {
+  if (sheetMode === "iosfirst") return openSheet("confirm");   // "save in Safari anyway"
+  closeSheet();
+};
+$("sheet").onclick = e => { if (e.target === $("sheet")) closeSheet(); };
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && $("sheet").classList.contains("on")) closeSheet();
+});
+
+$("offlineBtn").onclick = () => {
+  if (allSaved) return openSheet("howto");
+  // on iPhone, adding to the home screen first avoids downloading twice
+  if (isIOS() && !installed()) return openSheet("iosfirst");
+  openSheet("confirm");
+};
+
+$("sheetGo").onclick = async () => {
+  if (sheetMode === "iosfirst") { closeSheet(); return; }
+  if (sheetMode === "confirm") {
+    closeSheet();
+    await saveEverything();
+    if (!installed()) openSheet("howto");
+    return;
+  }
+  // howto sheet: one-tap install where the browser allows it
+  if (installEvent) {
+    closeSheet();
+    try { installEvent.prompt(); await installEvent.userChoice; } catch (e) {}
+    installEvent = null;
+  } else {
+    closeSheet();
+  }
+};
+
+/* ---- the actual download ---- */
+async function saveEverything() {
+  const cache = await openMedia();
+  if (!cache) return;
+
+  if (navigator.storage && navigator.storage.persist) {
+    try { await navigator.storage.persist(); } catch (e) {}
+  }
+
+  const files = mediaFiles();
+  const btn = $("offlineBtn"), txt = $("offlineText");
+  btn.disabled = true;
+  $("offlineBar").classList.add("on");
+
+  let saved = 0, failed = 0;
+  for (const url of files) {
+    try {
+      if (!(await cache.match(url))) await cache.add(url);
+      saved++;
+    } catch (e) { failed++; }
+    $("offlineFill").style.width = (((saved + failed) / files.length) * 100) + "%";
+    txt.textContent = "Saving " + (saved + failed) + " of " + files.length + "…";
+  }
+
+  $("offlineBar").classList.remove("on");
+  if (failed) {
+    $("offlineNote").textContent = failed + " file(s) could not be saved — check the file names, then try again.";
+  }
+  await refreshOfflineButton();
+}
+
+/* ---- add to home screen ---- */
+window.addEventListener("beforeinstallprompt", e => {
+  e.preventDefault();
+  installEvent = e;
+});
+
+window.addEventListener("appinstalled", () => {
+  installEvent = null;
+  closeSheet();
+  $("offlineNote").textContent = "Added to your home screen. Open the guide from that icon from now on.";
+});
+
+/* offline banner */
+const netbar = () => $("netbar").classList.toggle("on", !navigator.onLine);
+window.addEventListener("online", netbar);
+window.addEventListener("offline", netbar);
+netbar();
+
+refreshOfflineButton();
+</script>
+
+</body>
+</html>
